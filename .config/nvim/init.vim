@@ -45,13 +45,26 @@ else
   " \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
 endif
 " }}}
+"Plug 'yuezk/vim-js'
+"Plug 'maxmellon/vim-jsx-pretty'
+""{{{
+"let g:polyglot_disabled = ['jsx']
+""}}}
 Plug 'sheerun/vim-polyglot'
-Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'joshdick/onedark.vim'
 Plug 'airblade/vim-rooter'
 "Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'lyokha/vim-xkbswitch'
+Plug 'djoshea/vim-autoread'
+Plug 'bkad/camelcasemotion'
+Plug 'junegunn/vim-peekaboo'
 call plug#end()
+
+" Automatic keyboard config
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+let g:XkbSwitchEnabled = 1
 
 " Color scheme configuration
 set termguicolors
@@ -59,8 +72,9 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 colorscheme onedark
 
-" Relative line numbers
-set rnu
+" Relative line numbers + current line as absolute
+set number relativenumber
+set nu rnu
 
 " Open NERDTree when directory is opened
 autocmd StdinReadPre * let s:std_in=1
@@ -123,3 +137,21 @@ set expandtab
 
 " Enable mouse clicks
 set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+
+" Open git status after space gst
+nnoremap <silent> <Leader>gst :GFiles?<CR>
+
+" Start searching before pressing enter
+set incsearch
+
+" Use camel case motion for words
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
