@@ -8,24 +8,10 @@ endif
 
 call plug#begin('~/.vim/plugged')
 " Plug 'takac/vim-hardtime'
-"{{{
-let g:hardtime_default_on = 1
-"}}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"{{{
-"" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-"}}}
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tomasiser/vim-code-dark'
 Plug 'itchyny/lightline.vim'
 " {{{
 if 0 " toggle 0/1 for powerline
@@ -54,17 +40,18 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'joshdick/onedark.vim'
+" Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'airblade/vim-rooter'
 "Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'lyokha/vim-xkbswitch'
 Plug 'djoshea/vim-autoread'
 Plug 'bkad/camelcasemotion'
-Plug 'junegunn/vim-peekaboo'
+Plug 'tpope/vim-surround'
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'simeji/winresizer'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
-
-" Automatic keyboard config
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
-let g:XkbSwitchEnabled = 1
 
 " Color scheme configuration
 set termguicolors
@@ -96,6 +83,9 @@ nmap ,n :NERDTreeToggle<CR>
 
 " Space as leader
 let mapleader = " "
+
+" Change leader key timeout
+set timeoutlen=1500
 
 " Two spaces for fzf
 nnoremap <silent> <Leader><Space> :Files<CR>
@@ -155,3 +145,40 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
+
+" Remap autopair to prevent conflict with yarn-stack
+let g:AutoPairsShortcutToggle = '<M-q>'
+
+
+" Import LSP configs
+lua require('lsp-config')
+
+" nvim-compe
+set completeopt=menuone,noselect
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+
+" Show diagnostics in popup
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+
+let g:winresizer_start_key = '<Leader><C-r>' 
