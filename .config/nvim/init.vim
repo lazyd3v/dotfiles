@@ -39,7 +39,7 @@ endif
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 " Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'airblade/vim-rooter'
 "Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -51,13 +51,15 @@ Plug 'simeji/winresizer'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'smarquez1/nvcode-color-schemes.vim', { 'branch': 'patch-1' }
 call plug#end()
 
 " Color scheme configuration
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme onedark
+colorscheme onedark 
 
 " Relative line numbers + current line as absolute
 set number relativenumber
