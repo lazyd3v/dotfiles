@@ -53,6 +53,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'smarquez1/nvcode-color-schemes.vim', { 'branch': 'patch-1' }
+Plug 'alexaandru/nvim-lspupdate'
 call plug#end()
 
 " Color scheme configuration
@@ -184,3 +185,4 @@ autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 
 let g:winresizer_start_key = '<Leader><C-r>' 
+
