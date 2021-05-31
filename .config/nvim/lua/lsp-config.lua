@@ -94,6 +94,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
+
 -- Tree sitter setup
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", 
@@ -102,4 +103,5 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-
+-- Use another fuzzy matcher
+require('telescope').load_extension('fzy_native')

@@ -1,5 +1,4 @@
 " vim: set sw=2 ts=2 et foldlevel=0 foldmethod=marker:
-"
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -54,6 +53,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'smarquez1/nvcode-color-schemes.vim', { 'branch': 'patch-1' }
 Plug 'alexaandru/nvim-lspupdate'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 " Color scheme configuration
@@ -186,3 +190,8 @@ autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 
 let g:winresizer_start_key = '<Leader><C-r>' 
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
