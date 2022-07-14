@@ -13,6 +13,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 " {{{
 if 0 " toggle 0/1 for powerline
   let g:lightline = {
@@ -36,7 +37,7 @@ endif
 ""{{{
 "let g:polyglot_disabled = ['jsx']
 ""}}}
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 " Plug 'joshdick/onedark.vim'
@@ -53,6 +54,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'smarquez1/nvcode-color-schemes.vim', { 'branch': 'patch-1' }
+Plug 'alexaandru/nvim-lspupdate'
 call plug#end()
 
 " Color scheme configuration
@@ -180,7 +182,8 @@ let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 
 " Show diagnostics in popup
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+autocmd CursorHold * lua vim.diagnostic.open_float()
 autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
 
-let g:winresizer_start_key = '<Leader><C-r>' 
+let g:winresizer_start_key = '<Leader><C-r>'
+
